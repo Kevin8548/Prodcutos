@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Usuarios Gladiator's</title>
+    <link rel="stylesheet" href="/static/style/consulta_general.css">
+    <link rel="stylesheet" href="/static/font/flaticon.css">
+    <link rel="stylesheet" href="/static/style/style.css">
+    <style>
+        .product-image {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <section class="incons-container">
+            <!-- Aqui van  los iconos de las redes sociales, eslogan, correo y horarios -->
+            <div class="incons">
+                <a href="/"><span class="flaticon-001-facebook"></span></a>
+                <a href="/"><span class="flaticon-003-whatsapp"></span></a>
+                <a href="/"><span class="flaticon-011-instagram"></span></a>
+            </div>
+            <div class="inf-p">
+                <p>Más que una tienda, un universo de posibilidades...</p>
+            </div>
+            <div class="correo-a">
+                <a href="Gladiators99zxc@gmail.com">Gladiators99zxc@gmail.com</a>
+            </div>
+            <div class="inf-p">
+                <p>Lun-Vie 10:00a.m--8:00p.m
+                Sab-Dom 9:00a.m--9:00p.m</p>
+            </div>
+        </section>
+        <nav>
+            <!-- Aqui va el logo y nombre de la tienda y el nombre de las secciones -->
+            <section class="logo-gladiators">
+                <a href="index.html"><img src="../static/img/Logotipo_GladiatorsTransparente.png"></a>
+                <h5>Gladiator's</h5>
+            </section>
+
+            <ul class="menu secciones">
+                <li><a href="./pages/index.html">Inicio</a></li>
+
+                <li><a href="./pages/index.html">Ventas</a></li>
+
+                <li><a href="./pages/index.html">Productos</a>
+                <ul>
+                    <li class="secciones"><a href="registrar_producto">Registrar</a></li>
+                    <li class="secciones"><a href="consultar_productos">Consultar</a></li>
+                </ul>
+                </li>
+
+                <li><a href="./pages/index.html">Usuarios</a>
+                <ul>
+                    <li class="secciones"><a href="registrar_usuario">Registrar</a></li>
+                    <li class="secciones"><a href="consultar_usuarios">Consultar</a></li>
+                </ul>
+
+                </li>
+                <li><a href="./pages/index.html">Soporte</a></li>
+                <li><a href="./pages/index.html">Cerrar Sesión</a></li>
+            </ul>
+            
+        </nav>
+    </header>
+    <h1 class="p">Consultar Usuario</h1>
+    <br><br>
+    <section class="barra_busqueda">
+        <!-- Aqui se encuentra la barra de busqueda -->
+        <form class="textbox" method="POST" action="{{ url_for('buscar_usuario') }}">
+            <input class="form-control mr-sm-2" type="text" name="buscar" placeholder="Buscar por nombre o ID" aria-label="Buscar">
+            <button class="btn my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24">
+            <!-- !SVG content  -->
+           </svg>
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24">
+            <!-- SVG content  -->
+            </svg>
+        </form>
+    </section>
+    <br><br>
+    <div>
+        <section class="table_consulta">
+            <table>
+                <thead>
+                    <tr class="fila">
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Tipo de Usuario</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if datos %}
+                        {% for fila in datos %}
+                            {% if fila[0] is integer %}
+                                <tr>
+                                    <td>{{ fila[0] }}</td>
+                                    <td>{{ fila[1] }}</td>
+                                    <td>{{ fila[2] }}</td>
+                                    <td>{{ fila[3] }}</td>
+                                    <td>{{ fila[5] }}</td>
+                                    <td>{% if fila[4] %}
+                                        <img src="{{ url_for('static', filename=fila[4]) }}" alt="Imagen del producto" class="product-image">
+                                    {% else %}
+                                        No disponible
+                                    {% endif %}</td>
+                                    <td>
+                                        <!-- <form action="{{ url_for('update1_usuario', id_usuario=fila[0]) }}" method="POST" style="display:inline;">
+                                            <button type="submit" class="boton-2">Editar</button>
+                                        </form> -->
+                                        <form action="{{ url_for('update1_usuario', id_usuario=fila[0]) }}" method="GET" style="display:inline;">
+                                            <button type="submit" class="boton-2">Editar</button>
+                                        </form>
+
+                                        <form action="{{ url_for('delete_usuario', id_usuario=fila[0]) }}" method="POST" style="display:inline;">
+                                            <button type="submit" class="boton-2">Eliminar</button>
+                                        </form>
+                                        <a href="{{ url_for('consultar_usuario', id_usuario=fila[0]) }}" class="boton-2">Ver</a>
+                                    </td>
+
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">ID inválido: {{ usuario[0] }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6">No se encontraron usuarios.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

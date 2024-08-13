@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Usuario Gladiator's</title>
+    <link rel="stylesheet" href="../static/style/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/font/flaticon.css">
+    <link rel="stylesheet" href="../static/style/consulta_especifica.css">
+</head>
+<body> 
+    <header>
+        <section class="incons-container">
+            <div class="incons">
+                <a href="/"><span class="flaticon-001-facebook"></span></a>
+                <a href="/"><span class="flaticon-003-whatsapp"></span></a>
+                <a href="/"><span class="flaticon-011-instagram"></span></a>
+            </div>
+            <div class="inf-p">
+                <p>Más que una tienda, un universo de posibilidades...</p>
+            </div>
+            <div class="correo-a">
+                <a href="mailto:Gladiators99zxc@gmail.com">Gladiators99zxc@gmail.com</a>
+            </div>
+            <div class="inf-p">
+                <p>Lun-Vie 10:00a.m--8:00p.m | Sab-Dom 9:00a.m--9:00p.m</p>
+            </div>
+        </section> 
+        <nav>
+            <section class="logo-gladiators">
+                <a href="index.html"><img src="../static/img/Logotipo_GladiatorsTransparente.png" alt="imagen-logo"></a>
+                <h5>Gladiator's</h5>
+            </section>
+            <section class="secciones">
+                <a href="./pages/index.html">Inicio</a>
+                <a href="./pages/index.html">Ventas</a>
+                <a href="./pages/index.html">Productos</a>
+                <a href="./pages/index.html">Usuarios</a>
+                <a href="./pages/index.html">Soporte</a>
+                <a href="./pages/index.html">Cerrar Sesión</a>
+            </section>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="info-container">
+            <h1 class="text">{{ usuario[1] }}</h1>
+            <hr class="line">
+            <div class="photo-info-wrapper">
+                <div class="foto">
+                    <img src="{{ url_for('static', filename=usuario[3]) }}" alt="Foto del Usuario">
+                    <label>Foto del Usuario</label>
+                </div>
+                <div class="details">
+                    <div class="pp">
+                        <p class="informacion">&nbsp; ID: <br>&nbsp; {{ usuario[4] }}</p>
+                        <p class="informacion2">&nbsp; Nombre: <br>&nbsp; {{ usuario[5] }}</p>
+                    </div>
+                    <div class="pp">
+                        <p class="informacion3">&nbsp; Apellido Paterno: <br>&nbsp; {{ usuario[6] }}</p>
+                        <p class="informacion4">&nbsp; Apellido Materno: <br>&nbsp; {{ usuario[7] }}</p>
+                    </div>
+                    <div class="pp">
+                        <p class="informacion5">&nbsp; Domicilio: <br>&nbsp; {{ usuario[8] }}</p>
+                        <p class="informacion6">&nbsp; Número de teléfono: <br>&nbsp; {{ usuario[9] }}</p>
+                    </div>
+                    <div class="pp">
+                        <p class="informacion7">&nbsp; Nombre de Usuario: <br>&nbsp; {{ usuario[10] }}</p>
+                        <p class="informacion8">&nbsp; CURP: <br>&nbsp; {{ usuario[11] }}</p>
+                    </div>
+                    <div class="pp">
+                        <p class="informacion9">&nbsp; Tipo de Usuario: <br>&nbsp; {{ usuario[12] }}</p>
+                        <p class="informacion10">&nbsp; Fecha de contratación: <br>&nbsp; {{ usuario[13] }}</p>
+                    </div>
+                    <div class="pp">
+                        <p class="informacion11">&nbsp; Contraseña: <br>&nbsp; {{ usuario[14] }}</p>
+                        <p class="informacion12">&nbsp; Correo electrónico: <br>&nbsp; {{ usuario[15] }}</p>
+                    </div>
+                    <div class="button-container">
+                        <a href="{{ url_for('update1_usuario', id_usuario=usuario[0]) }}" class="button-1">Editar</a>
+                        <a href="{{ url_for('consultar_usuarios') }}" class="button-2">Regresar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
